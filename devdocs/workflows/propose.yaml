@@ -1,0 +1,77 @@
+# Workflow definition (ag.workflow.v2). Edit here or in the workflow editor.
+schema: ag.workflow.v2
+id: propose
+name: Propose projects
+intent: |
+  Serve a person's wish for the projects of this installation. Read the
+  installation's braindumps and current summonplan, read the catalogs of
+  shared projects the wishes point at, and propose a complete summonplan that
+  keeps what is there and adds what the braindumps call for, explaining each
+  addition by the sentences that call for it, whose it is and which roles it
+  fills, and saying plainly what no catalog covers. A wish found only in the
+  request is offered as a braindump. Only after the person agrees, add the
+  braindump, write the plan to the mind and apply it with wfe summon; then
+  record what the installation has. Proposing nothing, with the reasons, is a
+  valid result.
+documentation:
+  policy: custom
+  plan: false
+  reports: false
+  final: false
+execution:
+  agent: summoner-agent
+  profile: sonnet
+  session: run
+  guides: [agent/propose.md]
+intake:
+  requests: true
+repositories:
+  project: {path: ., access: editable}
+nodes:
+  gather:
+    type: study
+    name: Read the mind, the plan and the catalogs
+    description: |
+      Read the request, the mind (status, every braindump), the plan this
+      installation uses, what is in effect (wfe summon status), and each
+      catalog the wishes point at, pinned to the commit read. Write inputs.md
+      with the wishes numbered, each marked as in the mind or only in the
+      request.
+  propose:
+    type: do
+    name: Select and explain
+    description: |
+      Write proposal.yaml (a complete summonplan: existing entries kept,
+      additions from catalogs, because from this installation's braindumps)
+      and proposal.md (additions with the sentences that call for them, whose
+      code, roles filled and empty, uncovered wishes, the braindump offered),
+      and check the plan with wfe mind plan check.
+  agree:
+    type: do
+    name: Ask the person
+    appearance: {icon: review, color: violet}
+    description: |
+      When the proposal would write anything, ask the requester: agree,
+      change, or decline. A change adds another propose/agree round by
+      revision. When nothing would be written, complete without asking.
+  apply:
+    type: do
+    name: Write and apply
+    appearance: {icon: build, color: green}
+    description: |
+      Only after agreement: add the offered braindump (requester as author),
+      put the plan with grounds at the new mind head, and wfe summon apply
+      --yes; then wfe summon status. Otherwise complete with No change.
+  record:
+    type: do
+    name: Record the outcome
+    appearance: {icon: doc, color: slate}
+    description: |
+      Write outcome.md: the decision, the mind commits, the apply result per
+      entry, the roles in effect and still empty, uncovered wishes and
+      follow-ups.
+edges:
+  - {from: gather, to: propose}
+  - {from: propose, to: agree}
+  - {from: agree, to: apply}
+  - {from: apply, to: record}

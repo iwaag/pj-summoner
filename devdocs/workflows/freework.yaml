@@ -1,0 +1,36 @@
+# Workflow definition (ag.workflow.v2). Edit here or in the workflow editor.
+
+schema: ag.workflow.v2
+id: freework
+name: Free work
+intent: |-
+  Serve the person's request starting from their braindump and one conversation.
+  Present the actual run graph in workflow__talk, ask the requester for agreement,
+  and do the work on its own nodes, added before execution,
+  and talk with the person whenever that helps, until the request is served.
+documentation:
+  policy: custom
+  plan: false
+  reports: false
+  final: true
+intake:
+  requests: true
+repositories:
+  project: {path: ., access: editable}
+nodes:
+  talk:
+    type: talk
+    name: Talk
+    description: Understand the request and hold the consultation it needs. The work itself is added as nodes of its own and done there, not in this talk.
+    repositories: []
+  workflow__talk:
+    type: workflow__talk
+    name: Discuss the workflow
+    description: |-
+      Before substantive work, build the actual run graph: add suitable work nodes with wfe run adjust (wfe run help adjust; wfe run nodes <run> shows the catalog).
+      Present that recorded graph to the Developer, or to the agent that entrusted this run, and ask for agreement on the work, its order, intended results and checks. Keep that invitation visible even when you can proceed without waiting. A prose plan alone is not the graph.
+      Use the run's delivery route for the presentation and wfe run ask when an answer is needed; record answers and changes against this run. Do not claim agreement without an answer.
+      Agreement records direction, not permission to execute. An already authorized task need not wait for another approval. Start and perform the work on its own nodes, not inside talk or workflow__talk; revise the graph when the work changes.
+    repositories: []
+edges:
+  - {from: talk, to: workflow__talk}
