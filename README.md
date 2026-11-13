@@ -21,11 +21,18 @@ summonplans, catalogs, roles, `wfe mind`) and
 
 ## Getting it
 
-Put summoner in a summonplan with this repository as its `source` and a commit of this repository
-as its `commit`, like any project. A new installation receives its projects from a plan with
-`agdevctl bootstrap-projects --plan <file>`; an installation that already runs uses
-`wfe mind plan put` and `wfe summon apply` (see
-[`summon.md`](https://github.com/iwaag/agdev/blob/main/workflow_editor/docs/summon.md)).
+1. **A new installation receives summoner first.** After the core is up, `agdevctl bootstrap-projects`
+   without `--plan`, on an installation whose mind names no plan yet, applies the core's reference summonplan,
+   [`install/bootstrap/summonplan.yaml`](https://github.com/iwaag/agdev/blob/main/install/bootstrap/summonplan.yaml)
+   (written as the plan of the installation, named after its slug). That plan names this repository at
+   one commit; summoner fills no role. The core's
+   [`docs/install.md`](https://github.com/iwaag/agdev/blob/main/docs/install.md) (Setup) gives the
+   order: `bootstrap-projects`, write a braindump, request `summoner/propose`.
+2. **Any installation can also put summoner in its own plan**, with this repository as its `source`
+   and a commit of this repository as its `commit`, like any project. Use `wfe mind plan put` and
+   `wfe summon apply`, or `agdevctl bootstrap-projects --plan <file>` (see
+   [`summon.md`](https://github.com/iwaag/agdev/blob/main/workflow_editor/docs/summon.md),
+   "Bootstrap").
 
 ## Asking for a proposal
 
