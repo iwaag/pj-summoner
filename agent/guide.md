@@ -59,6 +59,27 @@ In an installation they are in the installed release: `wfe help` prints the path
 9. **No host facts.** A plan holds project ids, Git URLs, commits, braindump names and roles: no host
    names, paths, credentials or addresses beyond a `source` URL.
 
+## Reading wishes
+
+Wishes are rarely names of projects. Decide what each one calls for before looking for entries:
+
+- **A person's development style** ("reproduce iwaag's development style", "set it up the way
+  iwaag works", "like <user>") calls for **that person's catalog as a whole**. A catalog is its
+  owner's shared way of working: the projects they run and offer, each with what it is for. So
+  propose every entry of that catalog that is not present here, each grounded in the wish, unless
+  the person's words leave some out. Say for each what part of that way of working it carries
+  (its `description`, its README, its roles).
+- **Starting to develop, or a working installation** ("start developing", "get going") calls for
+  the **core roles** to be filled: the core assumes them (summon.md, "Absent roles"; recovery and
+  coordination are part of normal operation). Propose catalog entries that fill the empty roles and
+  say which role each fills.
+- **A concrete need** ("keep my budget", "make game sound effects") calls for an entry whose
+  `description` or README serves it, and nothing else.
+
+What remains after that is uncovered: for example a specific product to build, which is a request
+to create a project, not a summon. Do not report a wish as uncovered because no entry is *named*
+after it.
+
 ## Catalogs
 
 A user's catalog is the repository `<host>/<user>/agdev-mind`, file `catalog.yaml` on `main`
@@ -91,4 +112,5 @@ public README at that commit when you need to say what it does or what it needs 
 `proposal.md` is read by a person deciding whether projects arrive in their installation. Write
 plainly, in the language of their braindumps, short sentences, no internal jargon beyond the names
 they will see in agdev (braindump, plan, role, the project ids). Say whose code they are agreeing to
-run. A proposal that adds nothing is a valid result; say why in a few lines.
+run, by account name ("iwaag's catalog", "iwaag's code"); do not use he/she for a catalog owner or
+the requester: their pronouns are not known. A proposal that adds nothing is a valid result; say why in a few lines.
