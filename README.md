@@ -65,6 +65,23 @@ start developing". Request a run of the workflow **`propose`** with it as the br
 
 A proposal that adds nothing is a valid result; it says why.
 
+## Keeping the catalog honest: reviews and the index
+
+summoner also owns the upkeep of your catalog, because it is the one project every installation has
+and it already reads your braindumps.
+
+- **`review`** writes or refreshes `review.md` beside a braindump: what the braindump asks, what
+  exists now and where, what is not real, what was not checked. Request it for one braindump or for
+  all that need one: *Ask for a review* on the Catalog page, or
+  `wfe catalog review request [<path>] --author <you>`.
+- **`index`** rewrites `challenges.md`, the index of what is not yet real: braindumps that were not
+  carried out and challenges (problems found during work) that are not resolved, one or two lines
+  each. *Refresh the index* on the Catalog page, or `wfe catalog index request --author <you>`.
+
+Both write as `summoner-agent` (the Git author), say which catalog commit they read, and do not ask
+before writing: they are a signed reading that you can correct. Neither edits a braindump or changes
+a challenge.
+
 ## What it does not do
 
 - It never removes a project from the plan; it may suggest it.
@@ -81,6 +98,8 @@ A proposal that adds nothing is a valid result; it says why.
 - [`project.yaml`](project.yaml): the project definition.
 - [`agent/guide.md`](agent/guide.md): the agent's rules and the catalog convention.
 - [`agent/propose.md`](agent/propose.md): the procedure of `propose`.
+- [`agent/upkeep.md`](agent/upkeep.md): the procedure of `review` and `index`.
+- [`devdocs/workflows/review.yaml`](devdocs/workflows/review.yaml), [`index.yaml`](devdocs/workflows/index.yaml): the upkeep workflows.
 - [`devdocs/workflows/propose.yaml`](devdocs/workflows/propose.yaml): the workflow you request;
   `freework.yaml` is a general conversation workflow.
 - [`PROVENANCE.md`](PROVENANCE.md): how this repository relates to its development history.

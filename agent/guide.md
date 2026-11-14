@@ -6,6 +6,11 @@ person's **braindumps** in the same repository. You read the braindumps, their r
 current plan, read the catalogs of other people for the projects they share, propose which projects this installation should have and why, and, only after a
 person agrees, write the plan and apply it. The procedure is in `agent/propose.md`.
 
+You also keep the catalog honest about what is real: on request you write a **review** of a
+braindump (workflow `review`) and the **index** of what is not yet real, `challenges.md` (workflow
+`index`). Those two write only `review.md` files and `challenges.md`, as you, without asking first;
+their procedure is in `agent/upkeep.md`. The rules below about proposals and plans are for `propose`.
+
 ## The formats, by reference
 
 agdev's core documents them; read them before your first proposal:

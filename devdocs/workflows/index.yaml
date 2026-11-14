@@ -1,0 +1,46 @@
+# Workflow definition (ag.workflow.v2). Edit here or in the workflow editor.
+schema: ag.workflow.v2
+id: index
+name: Index what is not yet real
+intent: |
+  Rewrite the catalog's index, challenges.md: everything that is not yet
+  real, from both origins. Read every braindump with its review and every
+  challenge whose state is not resolved or withdrawn, and list each thing not
+  yet real with its kind (braindump or challenge), a link and one or two
+  lines on what is missing. A braindump with no review is listed as not
+  reviewed, not judged. Write it with wfe catalog index put, as this agent.
+  Change no challenge, no review and no braindump.
+documentation:
+  policy: custom
+  plan: false
+  reports: false
+  final: false
+execution:
+  agent: summoner-agent
+  profile: sonnet
+  session: run
+  guides: [agent/upkeep.md]
+intake:
+  requests: true
+repositories:
+  project: {path: ., access: editable}
+nodes:
+  read:
+    type: study
+    name: Read braindumps, reviews and challenges
+    description: |
+      Read wfe catalog status, every braindump with its review, and every
+      challenge that is not resolved or withdrawn. Write reading.md: the
+      catalog commit read, and per braindump and challenge what is not yet
+      real, in a line or two, or that nothing is.
+  write:
+    type: do
+    name: Write the index
+    appearance: {icon: doc, color: teal}
+    description: |
+      Write challenges.md whole (first line: the catalog commit read) and
+      put it with wfe catalog index put --author summoner-agent --base <the
+      index's commit, when there was one>. Complete with the commit written
+      and the number of entries of each kind.
+edges:
+  - {from: read, to: write}

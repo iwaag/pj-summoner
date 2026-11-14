@@ -1,0 +1,55 @@
+# Workflow definition (ag.workflow.v2). Edit here or in the workflow editor.
+schema: ag.workflow.v2
+id: review
+name: Review braindumps
+intent: |
+  Keep the catalog's reviews true. For one named braindump, or for every
+  braindump that has no review or changed after its review, read the
+  braindump, the plan entries and projects that name it and what those
+  projects' records show, and write review.md beside it with wfe catalog
+  review put, as this agent: what the braindump asks, what exists now and
+  where, what is not real, and what was not checked. Never edit a braindump.
+  Writing no review, with the reason, is a valid result.
+documentation:
+  policy: custom
+  plan: false
+  reports: false
+  final: false
+execution:
+  agent: summoner-agent
+  profile: sonnet
+  session: run
+  guides: [agent/upkeep.md]
+intake:
+  requests: true
+repositories:
+  project: {path: ., access: editable}
+nodes:
+  select:
+    type: study
+    name: Decide which braindumps
+    description: |
+      Read the request and wfe catalog status. Write targets.md: the catalog
+      commit read, and the braindumps to review (the one named, or each with
+      no review or changed after its review), with the reason for each.
+  read:
+    type: study
+    name: Read what became real
+    description: |
+      For each target, read the braindump, its present review, the plan
+      entries and projects that name it, and those projects' records
+      (project.yaml, README, runs). Write evidence.md: per sentence of the
+      braindump that asks for something, what was found and where, or that
+      it was not checked.
+  write:
+    type: do
+    name: Write the reviews
+    appearance: {icon: doc, color: teal}
+    description: |
+      Write each review as free Markdown (first line: the catalog commit
+      read) and put it with wfe catalog review put --author summoner-agent
+      --base <the review's commit, when it had one>. Write outcome.md: per
+      braindump the commit written, or why none.
+edges:
+  - {from: select, to: read}
+  - {from: read, to: write}
