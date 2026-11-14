@@ -46,10 +46,13 @@ start developing". Request a run of the workflow **`propose`** with it as the br
 
 1. **Gather.** It reads your request, the mind (every braindump, the plan in use), what the
    installation already has, and the catalogs your wish points at, each pinned to the commit it
-   read. A catalog is the file `catalog.yaml` of a repository `<user>/agdev-mind`. A request that
+   read. A catalog is the file `catalog.yaml` of a repository `<user>/mycatalog`. A request that
    names a person ("iwaag's ...") points at that person's catalog; a request that names none and
    asks for projects uses the one catalog summoner knows,
-   [`iwaag/agdev-mind`](https://github.com/iwaag/agdev-mind) (iwaag, who develops agdev), and says so.
+   [`iwaag/mycatalog`](https://github.com/iwaag/mycatalog) (iwaag, who develops agdev), and says so.
+   Naming a GitHub user is enough to start: `wfe summon style <user>` (or *Import a development
+   style* on the Mind page) requests this workflow with the wish to reproduce that user's style and
+   the catalog's commit.
 2. **Propose.** It writes `proposal.md` (what you asked, what you have, each addition with your
    quoted sentences, whose code, roles filled and still empty, what is uncovered) and
    `proposal.yaml` (the complete summonplan) in the run folder.

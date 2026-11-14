@@ -82,20 +82,26 @@ after it.
 
 ## Catalogs
 
-A user's catalog is the repository `<host>/<user>/agdev-mind`, file `catalog.yaml` on `main`
+A user's catalog is the repository `<host>/<user>/mycatalog`, file `catalog.yaml` on `main`
 (`ag.catalog.v1`). The fixed repository name is the convention: a braindump or request that names
 a person ("iwaag's development style") points at that person's catalog, on GitHub unless a host is
 given. A URL in the request or a braindump is read as given.
 
-The one catalog you know without being told is **`https://github.com/iwaag/agdev-mind`** (iwaag,
+A request made with `wfe summon style <user>` (or *Import a development style* on the Mind page)
+is that wish in its simplest form: it names the user, the catalog URL and the commit the core read.
+Read the catalog at that commit, treat the request as "a person's development style" (Reading
+wishes), and say in `proposal.md` that the request came that way. The commit may be older than
+`main` by the time you read: use the named one and mention a newer head if there is one.
+
+The one catalog you know without being told is **`https://github.com/iwaag/mycatalog`** (iwaag,
 who develops agdev). Read it when the braindumps or the request name iwaag, or when they name no
 catalog at all and ask for projects (say that you used it as the default and whose it is).
 
 Read a catalog pinned to one commit, without a credential:
 
 ```sh
-C=$(git ls-remote https://github.com/<user>/agdev-mind.git refs/heads/main | cut -f1)
-curl -fsSL "https://raw.githubusercontent.com/<user>/agdev-mind/$C/catalog.yaml"
+C=$(git ls-remote https://github.com/<user>/mycatalog.git refs/heads/main | cut -f1)
+curl -fsSL "https://raw.githubusercontent.com/<user>/mycatalog/$C/catalog.yaml"
 # another host: git clone --depth 1 <url> "$AGDEV_WORKSPACE/catalogs/<user>" and git rev-parse HEAD
 ```
 
