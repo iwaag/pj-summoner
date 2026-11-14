@@ -15,19 +15,19 @@ there. Use `$AGDEV_WORKSPACE` for scratch (catalog clones).
 
 1. Read the request: `braindump.md` in the run folder, and who wrote it (`wfe run show <run>`:
    the input's author). That person is the **requester**.
-2. The mind: `wfe mind status` (repository, head commit, this installation's plan, braindumps, the
-   projects registered here and their grounds), and every braindump in full
-   (`wfe mind braindump show <slug>`).
-3. The plan: `wfe mind plan show <plan>` and its file as YAML (`wfe mind plan show <plan> --json`
+2. The catalog: `wfe catalog status` (repository, head commit, this installation's plan, braindumps
+   with their reviews, the projects registered here and their grounds), and every braindump in full
+   with its review (`wfe catalog braindump show <path>`, `wfe catalog review show <path>`).
+3. The plan: `wfe catalog plan show <plan>` and its file as YAML (`wfe catalog plan show <plan> --json`
    holds the text). No plan named: say so; the proposal will be a new plan (below).
 4. What is in effect: `wfe summon status`.
 5. The catalogs the request and the braindumps point at (guide, "Catalogs"), each pinned to the
    commit you read. For each project you may propose, read its README at the catalog's commit
    (`https://raw.githubusercontent.com/<owner>/<repo>/<commit>/README.md` on GitHub): what it
    does, what it needs on the host, its licence. The proposal states these.
-6. Write `inputs.md`: mind head, plan and entries, braindumps (slug and title), catalogs (URL,
+6. Write `inputs.md`: catalog head, plan and entries, braindumps (path and title), catalogs read (URL,
    commit, entries) or why one could not be read, and the request's wishes as a numbered list in
-   the requester's words. Mark each wish as *in the mind* (which braindump) or *only in the
+   the requester's words. Mark each wish as *in the catalog* (which braindump) or *only in the
    request*.
 
 ## propose (do)
@@ -39,11 +39,11 @@ there. Use `$AGDEV_WORKSPACE` for scratch (catalog clones).
 2. Write `proposal.yaml`, a complete `ag.summonplan.v1`:
    - `name`: this installation's plan (or, with none, `installation`); `intent`: kept, or one line
      from the braindumps when there was none;
-   - `grounds`: the current mind head (apply sets it again after adding a braindump);
+   - `grounds`: the current catalog head (apply sets it again after adding a braindump);
    - every existing entry as it is (rule 3), then the added entries: `project`, `source`, `commit`,
      `roles` from the catalog, `state: summoned`, `because` from this installation's braindumps,
      including the one you offer (rule 6), and a `note` naming the catalog URL and commit.
-3. `wfe mind plan check proposal.yaml`. The only issue allowed is a `because` naming the braindump
+3. `wfe catalog plan check proposal.yaml`. The only issue allowed is a `because` naming the braindump
    this proposal adds (it does not exist yet). Fix anything else.
 4. Write `proposal.md` (below), attach both files, complete with one line: what is added, kept,
    uncovered.
@@ -51,19 +51,19 @@ there. Use `$AGDEV_WORKSPACE` for scratch (catalog clones).
 ### proposal.md
 
 1. **What you asked** — the wishes, short.
-2. **What this installation has** — mind commit, plan, its entries in one line each, catalogs read
+2. **What this installation has** — catalog commit, plan, its entries in one line each, catalogs read
    (URL and commit) and any that could not be read.
 3. **Proposed additions** — per project: what it is and what it will do here; the braindump
-   sentences that call for it (quoted, with the slug); whose catalog lists it, whose code it is
+   sentences that call for it (quoted, with the braindump's path); whose catalog lists it, whose code it is
    (source URL, commit, licence if the README states it); the roles it fills; what it needs on the
    host if its README says so. Or: "No addition", with why.
 4. **Kept** — every existing entry is kept; any `summoned` entry moved to a newer catalog commit,
    and why. Suggested removals, if any, are only suggestions: the plan keeps them.
 5. **Roles** — filled after apply, by which project; still empty, and what that means.
 6. **Uncovered** — each wish no catalog covers. Creating a project for it is a separate request.
-7. **New braindump** — when a wish exists only in the request (covered or not): the slug and the
+7. **New braindump** — when a wish exists only in the request (covered or not): the path and the
    full text that would be added, author the requester.
-8. **If you agree / if not** — on agreement: the braindump added, the plan written to the mind, and
+8. **If you agree / if not** — on agreement: the braindump added, the plan written to the catalog, and
    `wfe summon apply` (what it acquires, registers and wires). On "change …": a revised proposal.
    On decline: nothing is written.
 
@@ -91,13 +91,13 @@ there. Use `$AGDEV_WORKSPACE` for scratch (catalog clones).
 Only after agreement to the exact `proposal.yaml` last presented. Otherwise complete
 `No change: <declined | nothing to propose>` and go to record.
 
-1. The new braindump, if any: `wfe mind braindump add <slug> --file <file> --author "<requester>"`.
-2. Set `grounds` in `proposal.yaml` to the mind head now (`wfe mind status --json`, `head`). Edit
+1. The new braindump, if any: `wfe catalog braindump add <path> --file <file> --author "<requester>"`.
+2. Set `grounds` in `proposal.yaml` to the catalog head now (`wfe catalog status --json`, `head`). Edit
    the line with your file-editing tool or a short `python3` rewrite, not `sed -i` (its syntax
-   differs between systems). Read the line back, then `wfe mind plan check proposal.yaml` (no
+   differs between systems). Read the line back, then `wfe catalog plan check proposal.yaml` (no
    issues).
-3. `wfe mind plan put proposal.yaml --author "<the person who agreed>"`; when the installation had
-   no plan, `wfe mind plan use <name>`. `wfe mind plan show <name>` must show `grounds` = the head
+3. `wfe catalog plan put proposal.yaml --author "<the person who agreed>"`; when the installation had
+   no plan, `wfe catalog plan use <name>`. `wfe catalog plan show <name>` must show `grounds` = the head
    you set; if not, correct the file and put it again.
 4. `wfe summon apply --yes` (it shows the dry run, then applies). Keep its output in `apply.txt`.
    A refused or failed entry is reported, not repaired by other means: apply can be run again, and
@@ -113,7 +113,7 @@ service.
 Write `outcome.md` and attach it:
 
 - the decision: agreed (by whom, their words), declined, or nothing to propose;
-- the mind commits: the braindump commit and the plan commit;
+- the catalog commits: the braindump commit and the plan commit;
 - apply, per entry: outcome (`done`, `nothing`, `refused`, `failed`) and actions; deployments; the
   `observer:` line if any;
 - the roles in effect after apply, and any still empty;

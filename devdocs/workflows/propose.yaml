@@ -10,7 +10,7 @@ intent: |
   addition by the sentences that call for it, whose it is and which roles it
   fills, and saying plainly what no catalog covers. A wish found only in the
   request is offered as a braindump. Only after the person agrees, add the
-  braindump, write the plan to the mind and apply it with wfe summon; then
+  braindump, write the plan to the catalog and apply it with wfe summon; then
   record what the installation has. Proposing nothing, with the reasons, is a
   valid result.
 documentation:
@@ -30,12 +30,12 @@ repositories:
 nodes:
   gather:
     type: study
-    name: Read the mind, the plan and the catalogs
+    name: Read the catalog, the plan and other catalogs
     description: |
-      Read the request, the mind (status, every braindump), the plan this
+      Read the request, the catalog (status, every braindump), the plan this
       installation uses, what is in effect (wfe summon status), and each
       catalog the wishes point at, pinned to the commit read. Write inputs.md
-      with the wishes numbered, each marked as in the mind or only in the
+      with the wishes numbered, each marked as in the catalog or only in the
       request.
   propose:
     type: do
@@ -45,7 +45,7 @@ nodes:
       additions from catalogs, because from this installation's braindumps)
       and proposal.md (additions with the sentences that call for them, whose
       code, roles filled and empty, uncovered wishes, the braindump offered),
-      and check the plan with wfe mind plan check.
+      and check the plan with wfe catalog plan check.
   agree:
     type: do
     name: Ask the person
@@ -60,14 +60,14 @@ nodes:
     appearance: {icon: build, color: green}
     description: |
       Only after agreement: add the offered braindump (requester as author),
-      put the plan with grounds at the new mind head, and wfe summon apply
+      put the plan with grounds at the new catalog head, and wfe summon apply
       --yes; then wfe summon status. Otherwise complete with No change.
   record:
     type: do
     name: Record the outcome
     appearance: {icon: doc, color: slate}
     description: |
-      Write outcome.md: the decision, the mind commits, the apply result per
+      Write outcome.md: the decision, the catalog commits, the apply result per
       entry, the roles in effect and still empty, uncovered wishes and
       follow-ups.
 edges:

@@ -7,29 +7,29 @@ You write what you want as a **braindump**. summoner reads it with the installat
 braindumps and its current **summonplan**, looks at the **catalogs** of projects that people share,
 and proposes a plan: which projects would arrive, the sentences of yours that call for each, whose
 code they are, which of the core's roles they fill, and what no catalog covers. You agree, ask for
-changes, or decline. Only after you agree does it add your braindump to the mind, write the plan and
+changes, or decline. Only after you agree does it add your braindump to your catalog, write the plan and
 run `wfe summon apply`.
 
 This repository is the project as an agdev installation takes it in: a `project.yaml`, the agent's
 guides and the workflow definitions. It is not a program you run by itself. It needs an installation
 of the agdev core ([`install/`](https://github.com/iwaag/agdev/tree/main/install)); the
-core is what runs the workflows and holds the mind. The formats and commands are the core's:
-[`mind.md`](https://github.com/iwaag/agdev/blob/main/workflow_editor/docs/mind.md) (braindumps,
-summonplans, catalogs, roles, `wfe mind`) and
+core is what runs the workflows and holds your catalog. The formats and commands are the core's:
+[`mycatalog.md`](https://github.com/iwaag/agdev/blob/main/workflow_editor/docs/mycatalog.md) (the
+catalog: braindumps, reviews, summonplans, shared projects, roles, `wfe catalog`) and
 [`summon.md`](https://github.com/iwaag/agdev/blob/main/workflow_editor/docs/summon.md)
 (`wfe summon apply`).
 
 ## Getting it
 
 1. **A new installation receives summoner first.** After the core is up, `agdevctl bootstrap-projects`
-   without `--plan`, on an installation whose mind names no plan yet, applies the core's reference summonplan,
+   without `--plan`, on an installation that names no plan yet, applies the core's reference summonplan,
    [`install/bootstrap/summonplan.yaml`](https://github.com/iwaag/agdev/blob/main/install/bootstrap/summonplan.yaml)
    (written as the plan of the installation, named after its slug). That plan names this repository at
    one commit; summoner fills no role. The core's
    [`docs/install.md`](https://github.com/iwaag/agdev/blob/main/docs/install.md) (Setup) gives the
    order: `bootstrap-projects`, write a braindump, request `summoner/propose`.
 2. **Any installation can also put summoner in its own plan**, with this repository as its `source`
-   and a commit of this repository as its `commit`, like any project. Use `wfe mind plan put` and
+   and a commit of this repository as its `commit`, like any project. Use `wfe catalog plan put` and
    `wfe summon apply`, or `agdevctl bootstrap-projects --plan <file>` (see
    [`summon.md`](https://github.com/iwaag/agdev/blob/main/workflow_editor/docs/summon.md),
    "Bootstrap").
@@ -44,14 +44,14 @@ start developing". Request a run of the workflow **`propose`** with it as the br
 
 ## What happens, and how to answer
 
-1. **Gather.** It reads your request, the mind (every braindump, the plan in use), what the
+1. **Gather.** It reads your request, your catalog (every braindump and its review, the plan in use), what the
    installation already has, and the catalogs your wish points at, each pinned to the commit it
-   read. A catalog is the file `catalog.yaml` of a repository `<user>/mycatalog`. A request that
+   read. A catalog is a repository `<user>/mycatalog`; its file `projects.yaml` lists the projects that user shares. A request that
    names a person ("iwaag's ...") points at that person's catalog; a request that names none and
    asks for projects uses the one catalog summoner knows,
    [`iwaag/mycatalog`](https://github.com/iwaag/mycatalog) (iwaag, who develops agdev), and says so.
    Naming a GitHub user is enough to start: `wfe summon style <user>` (or *Import a development
-   style* on the Mind page) requests this workflow with the wish to reproduce that user's style and
+   style* on the Catalog page) requests this workflow with the wish to reproduce that user's style and
    the catalog's commit.
 2. **Propose.** It writes `proposal.md` (what you asked, what you have, each addition with your
    quoted sentences, whose code, roles filled and still empty, what is uncovered) and
@@ -60,7 +60,7 @@ start developing". Request a run of the workflow **`propose`** with it as the br
    **agree**, **change ...** (say what; you get a revised proposal) or **decline** (nothing is
    written).
 4. **Apply**, only after you agree to the exact proposal you were shown: it adds your braindump if one
-   was offered, puts the plan in the mind and runs `wfe summon apply`. `outcome.md` says what the
+   was offered, puts the plan in your catalog and runs `wfe summon apply`. `outcome.md` says what the
    installation has afterwards.
 
 A proposal that adds nothing is a valid result; it says why.
@@ -69,7 +69,7 @@ A proposal that adds nothing is a valid result; it says why.
 
 - It never removes a project from the plan; it may suggest it.
 - It does not create projects that no catalog has: it says the wish is uncovered.
-- It changes the installation only with `wfe mind` and `wfe summon`, and only after you agree.
+- It changes the installation only with `wfe catalog` and `wfe summon`, and only after you agree.
 - It adds nothing that no sentence of yours calls for.
 - It does not restart services, and none needs it: the observer takes the recovery role from
   `roles.json` by itself.

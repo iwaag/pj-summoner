@@ -4,10 +4,10 @@ schema: ag.project.v2
 id: summoner
 name: Summoner
 devdocs: directory
-intent: "Turn an installation's braindumps into a proposed summonplan: read the braindumps and the current plan, read the catalogs of shared projects, select the projects that fit, explain each choice by the braindump sentences that call for it, state what no catalog covers, and apply the plan with wfe mind and wfe summon only after a person agrees."
+intent: "Turn an installation's braindumps into a proposed summonplan: read the braindumps and the current plan, read the catalogs of shared projects, select the projects that fit, explain each choice by the braindump sentences that call for it, state what no catalog covers, and apply the plan with wfe catalog and wfe summon only after a person agrees."
 goals:
   - A person writes a braindump, requests propose, and reads a proposal that says which projects would arrive, why, whose they are and which roles they fill
-  - Nothing is written to the mind or applied until the person agrees; existing entries stay unless the person says otherwise
+  - Nothing is written to the catalog or applied until the person agrees; existing entries stay unless the person says otherwise
   - What no catalog covers is said plainly, not invented
 # Project guides: every workflow inherits them.
 guides: [agent/guide.md]
