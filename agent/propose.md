@@ -13,7 +13,7 @@ there. Use `$AGDEV_WORKSPACE` for scratch (catalog clones).
 
 ## gather (study)
 
-1. Read the request: `braindump.md` in the run folder, and who wrote it (`wfe run show <run>`:
+1. Read the request: `request.md` in the run folder (`braindump.md` when the installation's core is older than the rename), and who wrote it (`wfe run show <run>`:
    the input's author). That person is the **requester**.
 2. The catalog: `wfe catalog status` (repository, head commit, this installation's plan, braindumps
    with their reviews, the projects registered here and their grounds), and every braindump in full

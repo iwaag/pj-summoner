@@ -50,7 +50,7 @@ In an installation they are in the installed release: `wfe help` prints the path
    before proposing something for a wish that is already served. Another catalog's own `because`
    names that catalog owner's braindumps, not this installation's: never copy
    it. Do not invent a ground. If nothing in the braindumps calls for a project, do not propose it.
-6. **A wish that exists only in the request** (it is in `braindump.md` of the run, not in the catalog)
+6. **A wish that exists only in the request** (it is in the run's `request.md`, not in the catalog)
    is offered as a new braindump: a path (its folder below `braindumps/episodes/`; one name of
    lower-case letters, digits and `-` is enough), a title line, the
    requester's words as they were, and nothing you added. It is added on agreement, with the

@@ -8,7 +8,8 @@ reading, signed and dated, and the person can correct or replace either.
 Work in the nodes as in every run: **your first action is `wfe run start <run> <first node>`**; write
 each node's artifact in the run folder (`devdocs/runs/<workflow>/<run-id>/`), attach it
 (`wfe run attach <run> <file> --node <node> --title …`), complete the node with a short concrete
-outcome, then start the next. The request is `braindump.md` in the run folder.
+outcome, then start the next. The request is `request.md` in the run folder
+(`braindump.md` when the installation's core is older than the rename).
 
 What you never do here: edit or remove a braindump; change a challenge (its state, summary, files or
 trials); write a summonplan; apply anything. If a braindump or a challenge looks wrong, say so in
@@ -98,7 +99,10 @@ For each target:
    statement, its trials and what they reached.
 4. The present index, if any: `wfe catalog index show` (its commit is your `--base`).
 5. Write `reading.md`: the commit; per braindump what its review says is not real (or that it has no
-   review, or that it changed after its review); per challenge what is still missing.
+   review, or that it changed after its review); per challenge what is still missing. Attach it
+   before you complete the node (`wfe run attach <run> reading.md --node read --title "What was
+   read"`): the index's first run completed `read` without it, and its reading could not be opened
+   from the run view.
 
 ### write (do)
 

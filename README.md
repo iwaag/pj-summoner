@@ -37,10 +37,11 @@ catalog: braindumps, reviews, summonplans, shared projects, roles, `wfe catalog`
 ## Asking for a proposal
 
 Write your wish in your own words, one file, for example "reproduce iwaag's development style and
-start developing". Request a run of the workflow **`propose`** with it as the braindump:
+start developing". Request a run of the workflow **`propose`** with it as the request:
 
 - the WFE page → project **summoner** → *Request a run* → `propose`; or
-- `wfe request propose --workspace summoner --author <you> --braindump <file>`.
+- `wfe request propose --workspace summoner --author <you> --request <file>`
+  (`--braindump <file>` on a core older than 2026-11-15).
 
 ## What happens, and how to answer
 
