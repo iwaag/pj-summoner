@@ -68,8 +68,8 @@ A proposal that adds nothing is a valid result; it says why.
 - It does not create projects that no catalog has: it says the wish is uncovered.
 - It changes the installation only with `wfe mind` and `wfe summon`, and only after you agree.
 - It adds nothing that no sentence of yours calls for.
-- It does not restart services. When apply says the observer must be restarted (the recovery role
-  changed), run `agdevctl services-config --restart`.
+- It does not restart services, and none needs it: the observer takes the recovery role from
+  `roles.json` by itself.
 - It trusts the catalogs it reads only as far as you do: an added project is someone else's code that
   your installation will run. The proposal says whose.
 

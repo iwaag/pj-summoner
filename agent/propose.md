@@ -104,9 +104,9 @@ Only after agreement to the exact `proposal.yaml` last presented. Otherwise comp
    continues where it stopped.
 5. `wfe summon status`; append it to `apply.txt` and attach.
 
-If apply prints a `restart:` line (the observer reads its recovery setting at start), the outcome
-names it as a step for the installation's administrator: `agdevctl services-config --restart`.
-You do not run it.
+Nothing is restarted after apply: the observer takes the recovery role from `roles.json` at its next
+look (apply prints an `observer:` line when that role changed). Do not ask anyone to restart a
+service.
 
 ## record (do)
 
@@ -115,7 +115,7 @@ Write `outcome.md` and attach it:
 - the decision: agreed (by whom, their words), declined, or nothing to propose;
 - the mind commits: the braindump commit and the plan commit;
 - apply, per entry: outcome (`done`, `nothing`, `refused`, `failed`) and actions; deployments; the
-  restart line if any;
+  `observer:` line if any;
 - the roles in effect after apply, and any still empty;
 - uncovered wishes, and follow-ups for the person.
 
