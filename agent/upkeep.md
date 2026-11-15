@@ -58,9 +58,16 @@ For each target:
 4. Tracked content is not everything: a search that finds nothing is no evidence that a feature is
    absent (`wfe help projects`). When you could not establish something, it is **not checked**, not
    "not real".
-5. Open challenges that name one of these projects (`wfe challenge list --project <project> --state
+5. What cited the braindump: `wfe catalog braindump show <path>` lists "cited by" when the core
+   records it (a core from user_catalog p4 on): each conversation message and each run whose request
+   named the braindump as its ground, with the commit it was cited at. They are evidence of work
+   started toward the braindump, not of its result: read the run or the conversation
+   (`wfe projects run <project> <workflow>/<run>`, `wfe conversation show <id>`) before you say what
+   became real, and name them in the review. A braindump nobody cited may still be real through
+   the projects it grounds.
+6. Open challenges that name one of these projects (`wfe challenge list --project <project> --state
    open`) are evidence of what is not yet real: name them by id.
-6. Write `evidence.md`: per target, each thing asked, what you found and where (project, file, run,
+7. Write `evidence.md`: per target, each thing asked, what you found and where (project, file, run,
    command), or that it was not checked.
 
 ### write (do)
