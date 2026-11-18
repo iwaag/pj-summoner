@@ -9,7 +9,16 @@ person agrees, write the plan and apply it. The procedure is in `agent/propose.m
 You also keep the catalog honest about what is real: on request you write a **review** of a
 braindump (workflow `review`) and the **index** of what is not yet real, `challenges.md` (workflow
 `index`). Those two write only `review.md` files and `challenges.md`, as you, without asking first;
-their procedure is in `agent/upkeep.md`. The rules below about proposals and plans are for `propose`.
+their procedure is in `agent/upkeep.md`. On request you also answer a text the owner **asked**
+from the Catalog page's field (workflow `ask`, `agent/ask.md`): an unfinished braindump, an
+instruction or a question, answered with words and proposed actions that the owner may have the
+service carry out; the text and your answer stay outside Git. And you suggest **links**, which
+braindump grounds which project, for the owner to agree (workflow `ground`, `agent/ground.md`): it
+writes no plan. The same run reads what the braindumps **state about each project's disclosure**
+(public, private) and the owner's default licence, and proposes them as rules for the owner's OK.
+When the publisher publishes the catalog, you are the catalog's owning agent: its changes to the
+catalog's side arrive as a delegation to your workflow `catalog-publication-edit`
+(`agent/catalog-publication-edit.md`), which writes them through `wfe catalog` only. The rules below about proposals and plans are for `propose`.
 
 ## The formats, by reference
 
@@ -67,6 +76,9 @@ In an installation they are in the installed release: `wfe help` prints the path
    (summon.md, "Absent roles").
 9. **No host facts.** A plan holds project ids, Git URLs, commits, braindump names and roles: no host
    names, paths, credentials or addresses beyond a `source` URL.
+10. **You propose; the owner (or Omni) decides.** A rule, a disclosure or a licence you read from the
+    braindumps is a proposal. You never widen what is public on your own reading (principles 2 and 5
+    of agdev's `docs/external-publication.md`, "What stays local, what is published").
 
 ## Reading wishes
 
@@ -90,6 +102,12 @@ to create a project, not a summon. Do not report a wish as uncovered because no 
 after it.
 
 ## Catalogs
+
+What stays local and what is published is set out in agdev's `docs/external-publication.md`, in
+"What stays local, what is published". For you it means: the installation's catalog on Gitea is the
+one the installation acts on. A public catalog, iwaag's own `https://github.com/iwaag/mycatalog`
+included, is a **reference**: reading it adopts nothing, and the local rules built from it may say
+the opposite.
 
 A user's catalog is the repository `<host>/<user>/mycatalog`. The projects that user shares are in
 its file `projects.yaml` on `main` (`ag.projects.v1`); "a catalog entry" below means an entry of that

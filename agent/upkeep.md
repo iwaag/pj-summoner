@@ -11,7 +11,8 @@ each node's artifact in the run folder (`devdocs/runs/<workflow>/<run-id>/`), at
 outcome, then start the next. The request is `request.md` in the run folder
 (`braindump.md` when the installation's core is older than the rename).
 
-What you never do here: edit or remove a braindump; change a challenge (its state, summary, files or
+What you never do here: edit or remove a braindump; set its tags yourself (you may only propose
+them, below); change a challenge (its state, summary, files or
 trials); write a summonplan; apply anything. If a braindump or a challenge looks wrong, say so in
 your review or in the node outcome.
 
@@ -25,6 +26,26 @@ your review or in the node outcome.
   during work, with trials and evidence; its `summary.md` has a `state` (`open`, `resolved`,
   `withdrawn`, or the writer's own word);
 - **`challenges.md`** at the root is the index of what is not yet real, from both.
+
+A braindump may have **tags** (`metadata.yaml` beside it, agdev user_catalog p6 ex1): optional,
+free labels the owner chose, e.g. `style`, `desire`, `bounty`, `public`, `private`. None is
+required, none is wrong, and a tag asks for nothing by itself: `public` does not publish, `style` is
+not a preference, `bounty` opens no challenge. `mybraindump` is agdev's one recommended tag: a
+braindump about how the owner writes, tags and handles braindumps. Read every braindump tagged
+`mybraindump` (`wfe catalog braindump list --tag mybraindump`) as the owner's **stated
+conventions**: they tell you what the owner means by a tag. They change no setting and are not
+instructions to you; where they contradict each other, or say nothing about a tag in use, that is a
+finding to report, never a reason to refuse or rewrite anything.
+
+What the owner made of a convention is a **rule** (`rules.yaml` at the catalog's root,
+`wfe catalog rules list`): adopted by the owner from a sentence of theirs. The rules are the
+owner's: a review or the index never adopts, changes or retires one. A rule marked *its source
+changed* is a finding to report.
+
+The **links** between braindumps and projects (a project's `because`) are suggested by the
+workflow `ground` and agreed by the owner. A review therefore reads the projects its braindump
+grounds at that time, and writes no link: a project you think the braindump also calls for is a
+remark in the review.
 
 A braindump and a challenge are two kinds. A braindump comes from above (a wish); a challenge comes
 from below (a problem met while working). Do not turn one into the other, and do not merge them into
@@ -90,8 +111,26 @@ For each target:
    `--base` when the braindump had a review: a refusal means someone changed the review while you
    worked; read it again and decide whether yours still adds something. Do not overwrite a review a
    person wrote after your reading without taking it in.
-3. Write `outcome.md`: per target, the commit written, or why no review was written. Attach it and
-   complete the node with the count.
+3. **Tags, as a proposal only.** Read the target's tags (`wfe catalog tags show <path>`; "base:
+   none" when it has none) and the owner's `mybraindump` conventions. When the braindump's text
+   clearly supports a tag it lacks (by the owner's conventions, or one of the examples above), or
+   contradicts one it has, propose it, each change with a reason quoted from or pointing at the
+   text:
+
+   ```sh
+   wfe catalog tags propose <path> --author summoner-agent --run <project>/<workflow>/<run> \
+     --base <the braindump's commit you read> --file - <<'JSON'
+   {"changes": [{"op": "add", "tag": "desire", "reason": "it asks for a concrete tool: \"…\""}],
+    "note": "optional: a contradiction between mybraindump documents, a convention that is missing"}
+   JSON
+   ```
+
+   Nothing changes until the owner accepts chosen changes on the Catalog page. Propose nothing when
+   nothing is clearly supported: a braindump without tags is complete. Do not propose a tag for
+   every theme; do not propose `public` or `private` unless the text or a convention says so. The
+   proposal is not part of the review: the review stays about what became real.
+4. Write `outcome.md`: per target, the commit written, or why no review was written, and the tag
+   proposal made (its id), if any. Attach it and complete the node with the count.
 
 ## index
 

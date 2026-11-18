@@ -48,8 +48,10 @@ nodes:
     description: |
       Write each review as free Markdown (first line: the catalog commit
       read) and put it with wfe catalog review put --author summoner-agent
-      --base <the review's commit, when it had one>. Write outcome.md: per
-      braindump the commit written, or why none.
+      --base <the review's commit, when it had one>. Where the text clearly
+      supports a tag it lacks or contradicts one it has, propose it with
+      wfe catalog tags propose (never set tags). Write outcome.md: per
+      braindump the commit written, or why none, and the proposal id.
 edges:
   - {from: select, to: read}
   - {from: read, to: write}
